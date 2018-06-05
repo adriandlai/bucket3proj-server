@@ -3,6 +3,15 @@ const router = express.Router();
 
 const queries = require('../cartqueries');
 
+// function total(cart){
+//     return
+//     cart.reduce(function(total, current){
+//         return total + (quantity*price) 
+
+//     }, 0)
+
+// }
+
 router.get("/", (request, response, next) => {
     queries.list()
     .then(cart => {
@@ -19,9 +28,7 @@ router.put("/add/:id", (request, response, next) => {
         //     cart: cart,
         //     total: total(cart)
         // }
-
-
-        response.json(cart);
+        response.json({cart});
     }).catch(next);
 });
 
