@@ -15,7 +15,13 @@ router.get("/", (request, response, next) => {
 router.put("/add/:id", (request, response, next) => {
     queries.add(request.params.id, request.body).then(cart => {
         console.log('cartroute',cart)
-        response.json({cart});
+        // const newCart = {
+        //     cart: cart,
+        //     total: total(cart)
+        // }
+
+
+        response.json(cart);
     }).catch(next);
 });
 
@@ -38,9 +44,15 @@ router.put("/add/:id", (request, response, next) => {
 // });
 router.put("/delete/:id", (request, response, next) => {
     queries.delete(request.params.id, request.body).then(cart => {
-        response.json({cart: cart[0]});
+        console.log('cartroute',cart)
+        response.json({cart});
     }).catch(next);
 });
+// router.put("/delete/:id", (request, response, next) => {
+//     queries.delete(request.params.id, request.body).then(cart => {
+//         response.json({cart: cart[0]});
+//     }).catch(next);
+// });
 
 
 

@@ -2,6 +2,7 @@ const express = require("express");
 //body Parser parses allows server to interpret requests that have bodies post/put - come with a body
 const bodyParser = require("body-parser");
 const cors = require('cors')
+const SERVER_CONFIGS = require('./constants/server')
 
 //logger that helps for debuggin 
 const morgan = require("morgan");
@@ -9,6 +10,10 @@ const app = express();
 
 const menu = require("./routes/menuroutes.js");
 const cart = require("./routes/cartroutes.js");
+///for stripe routes
+// const configureRoutes = require('./routes');
+const paymentApi = require("./routes/striperoutes")
+
 
 app.use(morgan('dev'));
 //parses form data a json by default
@@ -17,18 +22,11 @@ app.use(bodyParser.urlencoded({
 }))
 app.use(bodyParser.json());
 app.use(cors({origin: true, credentials: true}))
-//added this to try and get rid of some CORS origin not allowed issue
-// app.use(function(req, res, next) {
-//     res.header("Access-Control-Allow-Origin", "*");
-//     res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//     res.header ("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
-//     req.header ("Access-Control-Allow-Methods: GET, POST, PATCH, PUT, DELETE, OPTIONS");
-//     next();
-// });
 
 app.use("/menu", menu);
 
 app.use("/cart", cart);
+app.use("/stripe", paymentApi)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {

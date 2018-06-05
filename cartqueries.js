@@ -11,7 +11,7 @@ module.exports = {
     //     .returning("*")
     //     // .then(record => record[0])
     // },
-    
+
     add(id,cart_tb){
         return database("cart_tb")
         .where('id', id)
@@ -44,8 +44,13 @@ module.exports = {
         return database("cart_tb")
         .where('id', id)
         .increment('quantity', -1)
-        .returning("*")
-    }
+        // .returning("*")
+        .then(() => {
+            return database("cart_tb")
+            .join('menu_tb', 'cart_tb.productkey', '=', 'menu_tb.productkey' )
+        }  
+    )}
+    
 
     
 }
