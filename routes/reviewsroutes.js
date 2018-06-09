@@ -21,6 +21,7 @@ router.delete("/:id", (request, response, next) => {
         })
     }).catch(next);
 });
+
 // router.get("/", (request, response, next) => {
 //     queries.create()
 //     .then(reviews => {
