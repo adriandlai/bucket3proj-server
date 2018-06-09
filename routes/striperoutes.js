@@ -7,13 +7,14 @@ const router = express.Router();
 
 const postStripeCharge = res => (stripeErr, stripeRes) => {
   if (stripeErr) {
+      console.log('error', stripeErr)
     res.status(500).send({ error: stripeErr });
   } else {
     res.status(200).send({ success: stripeRes });
   }
 }
 
-const paymentApi = app => {
+// const paymentApi = app => {
   router.get('/', (req, res) => {
     res.send({ message: 'Hello Stripe checkout server!', timestamp: new Date().toISOString() })
   });
@@ -22,7 +23,7 @@ const paymentApi = app => {
     stripe.charges.create(req.body, postStripeCharge(res));
   });
 
-  return app;
-};
+//   return app;
+// };
 
-module.exports = paymentApi;
+module.exports = router;

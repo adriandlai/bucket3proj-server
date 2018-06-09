@@ -20,6 +20,7 @@ module.exports = {
         .then(() => {
             return database("cart_tb")
             .join('menu_tb', 'cart_tb.productkey', '=', 'menu_tb.productkey' )
+            .orderBy('product_name', 'asc')
         }  
     )}
 

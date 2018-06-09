@@ -10,9 +10,8 @@ const app = express();
 
 const menu = require("./routes/menuroutes.js");
 const cart = require("./routes/cartroutes.js");
-///for stripe routes
-// const configureRoutes = require('./routes');
 const paymentApi = require("./routes/striperoutes")
+const reviews = require("./routes/reviewsroutes")
 
 
 app.use(morgan('dev'));
@@ -24,9 +23,9 @@ app.use(bodyParser.json());
 app.use(cors({origin: true, credentials: true}))
 
 app.use("/menu", menu);
-
 app.use("/cart", cart);
 app.use("/stripe", paymentApi)
+app.use("/reviews", reviews)
 
 // catch 404 and forward to error handler
 app.use((req, res, next) => {
