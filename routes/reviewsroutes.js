@@ -19,7 +19,7 @@ router.delete("/:id", (request, response, next) => {
         console.log('insidedelete', reviews)
         response.json({reviews});   
         })
-    }).catch(next);
+}).catch(next);
 });
 
 // router.get("/", (request, response, next) => {
