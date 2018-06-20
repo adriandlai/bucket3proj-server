@@ -22,13 +22,6 @@ router.delete("/:id", (request, response, next) => {
 }).catch(next);
 });
 
-// router.get("/", (request, response, next) => {
-//     queries.create()
-//     .then(reviews => {
-//         response.json({reviews});
-//     })
-//     .catch(next);
-// });
 router.post("/", (request, response, next) => {
     queries.create(request.body)
     .then(()=> {
@@ -39,16 +32,6 @@ router.post("/", (request, response, next) => {
     })
     }).catch(next);
 });
-
-// router.post("/", (request, response, next) => {
-//     queries.addJoke(request.body).then(joke => {
-//     response.status(201).json({joke: joke});
-// }).catch((error)=> {
-//     console.log(error)
-//     next()
-// } );
-// });
-
 
 
 module.exports = router;
